@@ -140,7 +140,18 @@ public class MyBatisGeneratorMojo extends AbstractMojo {
      */
     private String contexts;
 
+    /**
+     * Skip generator
+     * 
+     * @parameter expression="${mybatis.generator.skip}" default-value=false
+     */
+    private boolean skip;
+
     public void execute() throws MojoExecutionException {
+        if (skip) {
+            getLog().info( "MyBatis generator is skipped." );
+            return;
+        }
 
     	LogFactory.setLogFactory(new MavenLogFactory(this));
 
